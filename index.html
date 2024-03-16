@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<style type="text/css">
+
+		.boxs {
+			height: 100px;
+			width: 100px;
+			background-color: green;
+			border: solid;
+			position: absolute;
+		}
+		.firsBox {
+			background-color: white;
+			background-image: url(duckl.png);
+		}
+
+		.zhanovo{
+			height: 150px;
+			width: 300px;
+			border: solid;
+			background: skyblue;
+			border-radius: 25px;
+			position: absolute;
+			display: none;
+			margin-left: 800px;
+			margin-top: 450px;
+		}
+
+
+	</style>
+</head>
+<body>
+	<div class="content">
+		<h4 style="margin-left: 20px">Score: <span class="score">150</span></h4>
+		<img src="dice.png" class="bt" onclick="shag()" style="width: 100px; margin-left: 20px">		
+		<div class="boxs firsBox" style="margin-left: 20px">
+			<h4>finish</h4>
+		</div>
+		<div class="boxs" style="margin-left: 130px">1</div>
+		<div class="boxs" style="margin-left: 240px">2</div>
+		<div class="boxs" style="margin-left: 350px; background-color: red">3</div>
+				
+		<div class="boxs" style="margin-left: 460px">4</div> 
+		<div class="boxs" style="margin-left: 570px">5</div>
+		<div class="boxs" style="margin-left: 680px;  background-color: red">6</div>
+		<div class="boxs" style="margin-left: 790px">7</div>
+
+		<div class="boxs" style="margin-left: 900px">8</div>
+		<div class="boxs" style="margin-left: 1010px;background-color: red" >9</div>
+		<div class="boxs" style="margin-left: 1120px">10</div>
+		<div class="boxs" style="margin-left: 1230px">11</div>
+
+		<div class="boxs" style="margin-left: 1340px;background-color: red">12 
+			<p>иди назад на -5 клеток</p>
+		</div>
+		<div class="boxs" style="margin-left: 1340px; margin-top: 110px">13</div>
+		<div class="boxs" style="margin-left: 1340px; margin-top: 220px">14</div>	
+		<div class="boxs" style="margin-left: 1340px; margin-top: 330px">15</div>		
+
+		<div class="boxs" style="margin-left: 1340px; margin-top: 440px">16</div>
+		<div class="boxs" style="margin-left: 1230px; margin-top: 440px">17</div>
+		<div class="boxs" style="margin-left: 1120px; margin-top: 440px">18</div>
+		<div class="boxs" style="margin-left: 1010px; margin-top: 440px">19</div>
+
+		<div class="boxs" style="margin-left: 900px; margin-top: 440px">20</div>
+		<div class="boxs" style="margin-left: 790px; margin-top: 440px">21</div>
+		<div class="boxs" style="margin-left: 680px; margin-top: 440px">22</div>
+		<div class="boxs" style="margin-left: 570px; margin-top: 440px">23</div>
+
+		<div class="boxs" style="margin-left: 460px; margin-top: 440px">24</div>
+		<div class="boxs" style="margin-left: 350px; margin-top: 440px">25</div>
+		<div class="boxs" style="margin-left: 240px; margin-top: 440px">26</div>
+		<div class="boxs" style="margin-left: 130px; margin-top: 440px">27</div>
+
+		<div class="boxs" style="margin-left: 20px; margin-top: 440px">28</div>
+		<div class="boxs" style="margin-left: 20px; margin-top: 330px">29</div>
+		<div class="boxs" style="margin-left: 20px; margin-top: 220px">30</div>	
+		<div class="boxs" style="margin-left: 20px; margin-top: 110px">31</div>		
+
+		<!--последние дивы-->
+		<div class="boxs" style="margin-left: 130px; margin-top: 110px; background-color: green; opacity: 0"></div>
+		<div class="boxs" style="margin-left: 240px; margin-top: 110px; background-color: green; opacity: 0"></div>
+		<div class="boxs" style="margin-left: 350px; margin-top: 110px; background-color: green; opacity: 0"></div>
+		<div class="boxs" style="margin-left: 460px; margin-top: 110px; background-color: green; opacity: 0"></div>
+		<div class="boxs" style="margin-left: 570px; margin-top: 110px; background-color: green; opacity: 0"></div>
+		<div class="boxs" style="margin-left: 680px; margin-top: 110px; background-color: green; opacity: 0"></div>
+
+	</div>
+	<div class="zhanovo" onclick="reload()">
+		<h1>Победа! Начать заново</h1>
+	</div>	
+		
+</body>
+</html>
+
+
+
+
+
+
+<script type="text/javascript">
+	let content = document.querySelector(".content")
+	let konec = document.querySelector(".zhanovo")
+	let button = document.querySelector(".bt")
+	let score = document.querySelector(".score")
+	let point = 150;
+	let boxes = document.querySelectorAll(".boxs")
+ 	let step = 0
+	function shag() {
+			boxes[step].style.backgroundImage = "none"
+			let number = Math.round(Math.random() * 5)
+			step = step + number
+			scoreController(+10)
+			alert(" Выпало " + number + "! Иди на "+ step +" клетку")
+			boxes[step].style.backgroundImage = "url(duckl.png)"
+			boxes[step].style.backgroundSize = "200% 150%"
+
+			if(step > 31){
+				content.style.display = "none"
+				konec.style.display = "block"
+
+			}
+
+			if (step==3 || step == 6 || step == 9) {
+			alert("-10 points! Иди на клетку назад")
+			scoreController(-20)
+			step = step - 1	
+			boxes[3].style.backgroundImage = "none"
+			boxes[6].style.backgroundImage = "none"
+			boxes[9].style.backgroundImage = "none"
+			boxes[step].style.backgroundImage = "url(duckl.png)"
+			
+		} 
+
+			if (step==12) {
+      		alert("-50 points! На пять клеток назад")
+      		scoreController(-60)
+			step = step - 5	
+			boxes[12].style.backgroundImage = "none"
+			boxes[step].style.backgroundImage ="url(duckl.png)"
+		}
+	}
+	function scoreController(arg) {
+		point = point + arg;
+		score.innerHTML = point;
+	}
+	function reload(){
+		location.reload()
+	}
+
+
+				
+</script>
